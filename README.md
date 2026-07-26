@@ -9,8 +9,8 @@ The project currently contains the following analyses:
 
 | Analysis | Description | Notebook | Blog |
 |----------|-------------|----------|------|
-| **01 — Event & xG Analysis** | Events, xG and possession pattern analysis using StatsBomb data | [📓 Notebook](https://github.com/yucheng-fu/football_analytics/blob/main/src/01-analysis/01-analysis.ipynb) | [📝 Blog](https://yucheng-fu.github.io/blog/2025/wc2018-part1/) |
-| **02 — Pass Difficulty Modelling** | Gradient-boosted models for quantifying pass difficulty | [📓 Notebook](https://github.com/yucheng-fu/football_analytics/blob/main/src/02-analysis/02-analysis.ipynb) | [📝 Blog](https://yucheng-fu.github.io/blog/2026/wc2018-part2/) |
+| **01 — Event & xG Analysis** | Events, xG and possession pattern analysis using StatsBomb data | [📓 Notebook](https://github.com/yucheng-fu/football-analytics/blob/main/src/01-analysis/01-analysis.ipynb) | [📝 Blog](https://yucheng-fu.github.io/blog/2025/wc2018-part1/) |
+| **02 — Pass Difficulty Modelling** | Gradient-boosted models for quantifying pass difficulty | [📓 Notebook](https://github.com/yucheng-fu/football-analytics/blob/main/src/02-analysis/02-analysis.ipynb) | [📝 Blog](https://yucheng-fu.github.io/blog/2026/wc2018-part2/) |
 
 
 You can also check out the interactive pass classifier [here](https://yucheng-fu.github.io/football-analytics/).
@@ -18,8 +18,8 @@ You can also check out the interactive pass classifier [here](https://yucheng-fu
 ## 💃 Installation 
 Clone the repository:
 ```bash
-git clone https://github.com/yucheng-fu/football_analytics.git
-cd football_analytics
+git clone https://github.com/yucheng-fu/football-analytics.git
+cd football-analytics
 ```
 
 Install `uv` package manager. Please refer to their [documentation](https://docs.astral.sh/uv/getting-started/installation/)
@@ -58,9 +58,9 @@ ruff check . --select I --fix
 ruff format .
 ```
 ## 🚀 Deployment
-For deployment of FastAPI backend, see [README](https://github.com/yucheng-fu/football_analytics/blob/main/src/api/README.md)
+For deployment of FastAPI backend, see [README](https://github.com/yucheng-fu/football-Wanalytics/blob/main/src/api/README.md)
 
-For deployment of frontend, see [README](https://github.com/yucheng-fu/football_analytics/blob/main/frontend/README.md)
+For deployment of frontend, see [README](https://github.com/yucheng-fu/football-analytics/blob/main/frontend/README.md)
 
 ## 🛠️ Tech stack 
 **Backend:** Python, FastAPI
