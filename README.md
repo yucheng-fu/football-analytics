@@ -58,7 +58,7 @@ ruff check . --select I --fix
 ruff format .
 ```
 ## 🚀 Deployment
-For deployment of FastAPI backend, see [README](https://github.com/yucheng-fu/football-Wanalytics/blob/main/src/api/README.md)
+For deployment of FastAPI backend, see [README](https://github.com/yucheng-fu/football-analytics/blob/main/src/api/README.md)
 
 For deployment of frontend, see [README](https://github.com/yucheng-fu/football-analytics/blob/main/frontend/README.md)
 
