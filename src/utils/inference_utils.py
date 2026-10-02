@@ -202,6 +202,7 @@ def load_inference_bundle_from_local_artifacts(
     best_features_path = os.path.join(artifact_dir, "best_features.json")
     selected_features_path = os.path.join(artifact_dir, "selected_features.json")
     categorical_mapping_path = os.path.join(artifact_dir, "categorical_mapping.json")
+    shap_background_path = os.path.join(artifact_dir, "shap_background.csv")
 
     resolved_params_path = params_path if os.path.exists(params_path) else best_params_path
     resolved_best_features_path = best_features_path if os.path.exists(best_features_path) else selected_features_path
@@ -214,6 +215,7 @@ def load_inference_bundle_from_local_artifacts(
         resolved_params_path,
         resolved_best_features_path,
         categorical_mapping_path,
+        shap_background_path,
     ]
     missing = [path for path in required_paths if not os.path.exists(path)]
     if missing:
@@ -246,6 +248,7 @@ def load_inference_bundle_from_local_artifacts(
         best_features = np.array(json.load(best_features_file))
     with open(categorical_mapping_path, "r", encoding="utf-8") as categorical_mapping_file:
         categorical_mapping = json.load(categorical_mapping_file)
+    shap_background = pd.read_csv(shap_background_path)
 
     return {
         "model": model,
@@ -257,6 +260,7 @@ def load_inference_bundle_from_local_artifacts(
         "best_params": params,
         "selected_features": best_features,
         "categorical_mapping": categorical_mapping,
+        "shap_background": shap_background,
         "artifact_dir": artifact_dir,
         "model_type": model_type,
     }

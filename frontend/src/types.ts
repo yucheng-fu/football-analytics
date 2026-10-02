@@ -23,8 +23,16 @@ export interface PassPredictionRequestPayload {
   under_pressure: number | null;
 }
 
+export interface FeatureContribution {
+  feature: string;
+  value: number | string | null;
+  contribution: number;
+}
+
 export interface PassPredictionResponsePayload {
   prediction: number;
   probability: number;
   timestamp: string;
+  base_value: number;
+  contributions: FeatureContribution[];
 }

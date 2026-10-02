@@ -11,9 +11,9 @@ short_description: FastAPI endpoints
 This folder contains the code for the ML inference API that makes the predictions.
 
 ## Run locally
-From root folder run the following:
+Run the following from `src/api`:
 ```bash 
-uv run fastapi dev main.py
+uv run python -m fastapi dev main.py
 ```
 
 Navigate to `http://127.0.0.1:8000#docs` to open the Swagger API documentation.
@@ -35,6 +35,10 @@ The artifact download script writes these files to `src/api/artifacts/<model_typ
 - `categorical_mapping.json`
 - `manifest.json`
 
+Then build the SHAP background sample (200 random training passes, written to `shap_background.csv` in each model folder) from `src/`:
+```bash
+python -m api.scripts.build_shap_background
+```
 
 Run the Github Actions workflow defined in `.github\workflows\deploy-api.yml`
 

@@ -1,5 +1,5 @@
 import { DEFAULT_ARROW_PROPERTIES } from "../config/constants";
-import type { ArrowProperties } from "../types";
+import type { ArrowProperties, FeatureContribution } from "../types";
 import { computeDistance } from "../utils/dist";
 
 interface PassArrowParams {
@@ -25,6 +25,9 @@ export class PassArrow {
   prediction: number | null;
   probability: number | null;
   predictedAt: string | null;
+  baseValue: number | null;
+  contributions: FeatureContribution[] | null;
+  isStale: boolean;
 
   constructor({ id, x1, y1, x2, y2, properties = {} }: PassArrowParams) {
     this.id = id;
@@ -40,6 +43,9 @@ export class PassArrow {
     this.prediction = null;
     this.probability = null;
     this.predictedAt = null;
+    this.baseValue = null;
+    this.contributions = null;
+    this.isStale = false;
   }
 
   getSuccessProbability() {
