@@ -32,6 +32,7 @@ export class UIController {
   closePanelButton: any;
   predictButton: any;
   predictionStatus: any;
+  apiStatus: any;
 
   constructor() {
     this.editPanel = d3.select("#edit-panel");
@@ -47,6 +48,7 @@ export class UIController {
     this.closePanelButton = d3.select("#close-panel");
     this.predictButton = d3.select("#btn-predict-active");
     this.predictionStatus = d3.select("#prediction-status");
+    this.apiStatus = d3.select("#api-status");
   }
 
   bindFormChange(handler: () => void) {
@@ -118,9 +120,6 @@ export class UIController {
 
   renderPaginationControls({ currentPage, totalPages, onPrev, onNext }: PaginationConfig) {
     const controls = this.paginationControls.html("");
-    if (totalPages <= 1) {
-      return;
-    }
 
     controls
       .append("button")
@@ -139,6 +138,10 @@ export class UIController {
 
   setPredictionStatus(message: string) {
     this.predictionStatus.text(message);
+  }
+
+  setApiStatus(ready: boolean) {
+    this.apiStatus.classed("online", ready).classed("offline", !ready).text(ready ? "● API online." : "● API asleep or starting.");
   }
 
   setPredictButtonLoading(isLoading: boolean) {

@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Football Analytics Inference API",
-    description="Production-ready inference API for local MLflow model artifacts.",
+    description="FastAPI endpoints for serving the pass success classifier.",
     version="1.0.0",
     lifespan=lifespan,
 )

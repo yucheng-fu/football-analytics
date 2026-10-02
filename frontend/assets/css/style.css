@@ -32,7 +32,8 @@ body {
   padding: 30px;
   background: #fff;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #canvas {
@@ -132,6 +133,28 @@ body {
   background: white;
   cursor: pointer;
 }
+
+#pagination-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.api-note {
+  min-height: 0;
+  margin: 10px 0 0;
+}
+
+.api-note a { color: #2563eb; }
+#api-status.online { color: #16a34a; }
+#api-status.offline { color: #dc2626; }
+
+.github-link {
+  align-self: flex-start;
+  margin-top: 8px;
+  color: var(--text-muted);
+}
+
+.github-link:hover { color: var(--text-main); }
 
 .sidebar-footer {
   padding: 15px;
