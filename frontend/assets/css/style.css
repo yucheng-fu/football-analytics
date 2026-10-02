@@ -133,6 +133,19 @@ body {
   cursor: pointer;
 }
 
+#pagination-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.api-note {
+  min-height: 0;
+  margin: 0 0 10px;
+}
+
+.api-note a { color: #2563eb; }
+#api-status.online { color: #16a34a; }
+
 .sidebar-footer {
   padding: 15px;
   border-top: 1px solid var(--border-color);

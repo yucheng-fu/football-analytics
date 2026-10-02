@@ -24,14 +24,16 @@ async def lifespan(app: FastAPI):
         artifact_dir=artifact_dir,
         model_type=model_type,
     )
-    app.state.inference_frame_service = InferenceFrameService(app.state.inference_bundle)
+    app.state.inference_frame_service = InferenceFrameService(
+        app.state.inference_bundle
+    )
     app.state.model_service = ModelService(app.state.inference_bundle)
     yield
 
 
 app = FastAPI(
     title="Football Analytics Inference API",
-    description="Production-ready inference API for local MLflow model artifacts.",
+    description="FastAPI endpoints for serving the pass success classifier.",
     version="1.0.0",
     lifespan=lifespan,
 )

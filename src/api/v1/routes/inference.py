@@ -1,6 +1,6 @@
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException
 
 from api.core.dependencies import get_model_service
 from api.schemas.request import InferenceRequest
@@ -9,13 +9,6 @@ from api.services.model_service import ModelService
 
 router = APIRouter(prefix="/inference")
 logger = logging.getLogger(__name__)
-
-
-@router.get("/health", tags=["Inference"])
-def health(request: Request) -> dict[str, bool]:
-    service = getattr(request.app.state, "model_service", None)
-    model_loaded = service is not None and service.is_model_available()
-    return {"model_loaded": model_loaded}
 
 
 @router.post(

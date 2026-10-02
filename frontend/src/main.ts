@@ -39,6 +39,7 @@ class PassDesignerApp {
       void this.handlePredictActive();
     });
     window.addEventListener("keydown", (event) => this.handleKeyDown(event));
+    void this.predictionService.isApiReady().then((ready) => this.ui.setApiStatus(ready));
 
     this.render();
   }

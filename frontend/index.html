@@ -31,6 +31,10 @@
       <div id="pagination-controls"></div>
 
       <div class="sidebar-footer">
+        <p class="status-text api-note">
+          <span id="api-status">Checking API…</span>
+          The API sleeps when idle. <a href="https://yuch0001-football-api.hf.space/docs#/" target="_blank" rel="noopener">Open the API docs</a> to wake it (can take ~1 min).
+        </p>
         <button id="btn-clear-all" class="btn-danger-outline">Clear All Plays</button>
       </div>
     </aside>
@@ -69,7 +73,7 @@
 
       <div class="input-group">
         <div class="label-row">
-          <label>Duration</label>
+          <label>Duration (seconds)</label>
           <span id="duration-val">1.0</span>
         </div>
         <input type="range" id="input-duration" min="0.5" max="10" step="0.1" value="1.0">
