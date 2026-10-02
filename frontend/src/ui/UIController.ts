@@ -141,7 +141,7 @@ export class UIController {
   }
 
   setApiStatus(ready: boolean) {
-    this.apiStatus.classed("online", ready).text(ready ? "● API online." : "● API asleep or starting.");
+    this.apiStatus.classed("online", ready).classed("offline", !ready).text(ready ? "● API online." : "● API asleep or starting.");
   }
 
   setPredictButtonLoading(isLoading: boolean) {

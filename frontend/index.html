@@ -10,6 +10,10 @@
   <div id="app-container">
     <div id="pitch-container">
       <svg id="canvas"></svg>
+      <p class="status-text api-note">
+        <span id="api-status">Checking API…</span>
+        The API sleeps when idle. <a href="https://yuch0001-football-api.hf.space/docs#/" target="_blank" rel="noopener">Open the API docs</a> to wake it (can take ~1 min).
+      </p>
     </div>
 
     <aside id="sidebar">
@@ -31,10 +35,6 @@
       <div id="pagination-controls"></div>
 
       <div class="sidebar-footer">
-        <p class="status-text api-note">
-          <span id="api-status">Checking API…</span>
-          The API sleeps when idle. <a href="https://yuch0001-football-api.hf.space/docs#/" target="_blank" rel="noopener">Open the API docs</a> to wake it (can take ~1 min).
-        </p>
         <button id="btn-clear-all" class="btn-danger-outline">Clear All Plays</button>
       </div>
     </aside>
