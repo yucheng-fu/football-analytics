@@ -35,7 +35,7 @@ The artifact download script writes these files to `src/api/artifacts/<model_typ
 - `categorical_mapping.json`
 - `manifest.json`
 
-Then build the SHAP background sample (100 random training passes, written to `shap_background.csv` in each model folder) from `src/`:
+Then build the SHAP background sample (200 random training passes, written to `shap_background.csv` in each model folder) from `src/`:
 ```bash
 python -m api.scripts.build_shap_background
 ```
