@@ -148,6 +148,14 @@ body {
 #api-status.online { color: #16a34a; }
 #api-status.offline { color: #dc2626; }
 
+.github-link {
+  align-self: flex-start;
+  margin-top: 8px;
+  color: var(--text-muted);
+}
+
+.github-link:hover { color: var(--text-main); }
+
 .sidebar-footer {
   padding: 15px;
   border-top: 1px solid var(--border-color);
