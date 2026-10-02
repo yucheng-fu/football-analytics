@@ -136,6 +136,8 @@ class PassDesignerApp {
       activeArrow.prediction = response.prediction;
       activeArrow.probability = response.probability;
       activeArrow.predictedAt = response.timestamp;
+      activeArrow.baseValue = response.base_value;
+      activeArrow.contributions = response.contributions;
       this.ui.setPredictionStatus("Prediction saved on selected pass.");
       this.render();
     } catch (error) {

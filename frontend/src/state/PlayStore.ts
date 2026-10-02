@@ -49,6 +49,7 @@ export class PlayStore {
     }
 
     Object.assign(activeArrow, properties);
+    activeArrow.clearPrediction();
     return true;
   }
 

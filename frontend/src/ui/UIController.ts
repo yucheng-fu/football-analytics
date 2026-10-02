@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import type { ArrowProperties } from "../types";
 import type { PassArrow } from "../models/PassArrow";
+import { ShapWaterfallRenderer } from "../renderers/ShapWaterfallRenderer";
 
 interface PaginationConfig {
   currentPage: number;
@@ -33,6 +34,7 @@ export class UIController {
   predictButton: any;
   predictionStatus: any;
   apiStatus: any;
+  shapRenderer: ShapWaterfallRenderer;
 
   constructor() {
     this.editPanel = d3.select("#edit-panel");
@@ -49,6 +51,7 @@ export class UIController {
     this.predictButton = d3.select("#btn-predict-active");
     this.predictionStatus = d3.select("#prediction-status");
     this.apiStatus = d3.select("#api-status");
+    this.shapRenderer = new ShapWaterfallRenderer();
   }
 
   bindFormChange(handler: () => void) {
@@ -86,8 +89,9 @@ export class UIController {
 
   renderEditPanel(activeArrow: PassArrow | null) {
     if (!activeArrow) {
-      this.editPanel.classed("open", false);
+      this.editPanel.classed("open", false).classed("explained", false);
       this.predictionStatus.text("");
+      this.shapRenderer.hide();
       return;
     }
 
@@ -98,6 +102,14 @@ export class UIController {
     this.durationInput.property("value", activeArrow.duration);
     this.setDurationText(activeArrow.duration);
     this.predictionStatus.text(this.getPredictionStatus(activeArrow));
+
+    const explained = activeArrow.baseValue !== null && activeArrow.contributions !== null;
+    this.editPanel.classed("explained", explained);
+    if (explained) {
+      this.shapRenderer.render(activeArrow.baseValue!, activeArrow.contributions!);
+    } else {
+      this.shapRenderer.hide();
+    }
   }
 
   renderPlayList(arrows: ListArrowView[], activeId: string | null, onItemClick: (id: string) => void) {
@@ -154,8 +166,8 @@ export class UIController {
       return "No prediction yet.";
     }
 
-    const classLabel = activeArrow.prediction === 1 ? "success" : "failure";
-    const classProbability = Math.round(activeArrow.probability * 100);
-    return `Prediction: ${classLabel}. (Confidence: ${classProbability}%)` 
+    const classLabel = activeArrow.prediction === 1 ? "Success" : "Failure";
+    const successProbability = Math.round(activeArrow.getSuccessProbability()! * 100);
+    return `Prediction: ${classLabel} · Probability of success: ${successProbability}%`;
   }
 }

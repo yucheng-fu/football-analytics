@@ -6,6 +6,9 @@
   --text-main: #2d3436;
   --text-muted: #636e72;
   --shadow: 0 10px 30px rgba(0,0,0,0.08);
+  --shap-pos: #2a78d6;
+  --shap-neg: #e34948;
+  --gridline: #f1f2f4;
 }
 
 body {
@@ -178,7 +181,10 @@ body {
   opacity: 1;
   padding: 20px;
   border-left-width: 1px;
+  overflow-y: auto;
 }
+
+#edit-panel.open.explained { width: 360px; }
 
 .panel-header {
   display: flex;
@@ -249,3 +255,155 @@ body {
 
 .btn-danger:hover { filter: brightness(0.9); }
 .btn-danger-outline:hover { background: #fff5f5; }
+
+/* SHAP explanation */
+#shap-explanation {
+  position: relative;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.shap-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+#shap-summary strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+#shap-details > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 28px;
+  min-height: 20px;
+  border-radius: 4px;
+  user-select: none;
+}
+
+#shap-details > summary::-webkit-details-marker { display: none; }
+#shap-details > summary:hover { color: var(--text-main); }
+#shap-details > summary:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+
+#shap-details > summary::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+
+#shap-details[open] > summary::before { transform: rotate(45deg) translate(-1px, -1px); }
+
+.shap-info-btn {
+  position: absolute;
+  top: 17px;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: white;
+  color: var(--text-muted);
+  font: italic 700 11px/16px Georgia, serif;
+  cursor: pointer;
+}
+
+.shap-info-btn:hover { color: var(--text-main); border-color: var(--text-muted); }
+.shap-info-btn:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+
+#shap-info {
+  max-width: 320px;
+  margin: auto;
+  padding: 14px 16px 16px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-main);
+}
+
+#shap-info::backdrop { background: rgba(15, 23, 42, 0.08); }
+
+#shap-info h5 {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+#shap-info p { margin: 8px 0 0; }
+
+#shap-summary {
+  margin: 6px 0 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+#shap-chart {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#shap-chart text {
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+#shap-chart .shap-axis .tick line { stroke: var(--gridline); }
+#shap-chart .shap-axis .tick text { fill: var(--text-muted); font-size: 10px; }
+#shap-chart .shap-connectors line { stroke: #cfd4da; stroke-width: 1; stroke-dasharray: 2 2; }
+#shap-chart .shap-unit { fill: var(--text-muted); font-size: 10px; }
+#shap-chart .shap-marker text { fill: var(--text-muted); font-size: 10px; font-weight: 600; }
+#shap-chart .shap-marker text.final { fill: var(--text-main); font-size: 12px; font-weight: 400; }
+#shap-chart .shap-marker text.final .num { font-weight: 700; }
+#shap-chart .shap-final-dot { fill: var(--text-main); }
+
+#shap-chart .shap-row { cursor: default; }
+#shap-chart .shap-row .wash { fill: transparent; }
+#shap-chart .shap-row:hover .wash { fill: #f6f7f9; }
+#shap-chart .bar.pos { fill: var(--shap-pos); }
+#shap-chart .bar.neg { fill: var(--shap-neg); }
+#shap-chart .label { fill: var(--text-main); font-size: 12px; }
+#shap-chart .sub-label { fill: var(--text-muted); font-size: 10.5px; }
+#shap-chart .value { fill: var(--text-main); font-size: 12px; font-weight: 600; }
+
+#shap-tooltip {
+  position: absolute;
+  z-index: 10;
+  min-width: 170px;
+  padding: 10px 12px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  color: var(--text-main);
+  pointer-events: none;
+}
+
+#shap-tooltip[hidden] { display: none; }
+#shap-tooltip .tooltip-title { font-weight: 600; margin-bottom: 2px; }
+#shap-tooltip .tooltip-muted { color: var(--text-muted); font-size: 11px; }
+#shap-tooltip .tooltip-row { display: flex; justify-content: space-between; gap: 16px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+#shap-tooltip .tooltip-row span:first-child { color: var(--text-muted); }
+#shap-tooltip .pos, #shap-tooltip .neg { font-weight: 600; }
+#shap-tooltip .pos::before, #shap-tooltip .neg::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 2px; }
+#shap-tooltip .pos::before { background: var(--shap-pos); }
+#shap-tooltip .neg::before { background: var(--shap-neg); }
