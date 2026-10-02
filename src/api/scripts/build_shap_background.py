@@ -34,21 +34,13 @@ def build_shap_background(
         .sample(n_samples, seed=seed)
     )
     for model_type in model_types:
-        background.write_csv(
-            os.path.join(artifacts_root_dir, model_type, "shap_background.csv")
-        )
+        background.write_csv(os.path.join(artifacts_root_dir, model_type, "shap_background.csv"))
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Write the SHAP background sample into the API artifact folders."
-    )
-    parser.add_argument(
-        "--passes-path", default=os.path.join("data", "02-analysis", "passes.parquet")
-    )
-    parser.add_argument(
-        "--artifacts-root-dir", default=os.path.join("api", "artifacts")
-    )
+    parser = argparse.ArgumentParser(description="Write the SHAP background sample into the API artifact folders.")
+    parser.add_argument("--passes-path", default=os.path.join("data", "02-analysis", "passes.parquet"))
+    parser.add_argument("--artifacts-root-dir", default=os.path.join("api", "artifacts"))
     parser.add_argument("--n-samples", type=int, default=200)
     return parser.parse_args()
 
