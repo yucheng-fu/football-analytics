@@ -33,6 +33,7 @@ export class UIController {
   closePanelButton: any;
   predictButton: any;
   predictionStatus: any;
+  staleNote: any;
   apiStatus: any;
   shapRenderer: ShapWaterfallRenderer;
 
@@ -50,6 +51,7 @@ export class UIController {
     this.closePanelButton = d3.select("#close-panel");
     this.predictButton = d3.select("#btn-predict-active");
     this.predictionStatus = d3.select("#prediction-status");
+    this.staleNote = d3.select("#prediction-stale");
     this.apiStatus = d3.select("#api-status");
     this.shapRenderer = new ShapWaterfallRenderer();
   }
@@ -89,7 +91,8 @@ export class UIController {
 
   renderEditPanel(activeArrow: PassArrow | null) {
     if (!activeArrow) {
-      this.editPanel.classed("open", false).classed("explained", false);
+      this.editPanel.classed("open", false).classed("explained", false).classed("stale", false);
+      this.staleNote.property("hidden", true);
       this.predictionStatus.text("");
       this.shapRenderer.hide();
       return;
@@ -102,6 +105,8 @@ export class UIController {
     this.durationInput.property("value", activeArrow.duration);
     this.setDurationText(activeArrow.duration);
     this.predictionStatus.text(this.getPredictionStatus(activeArrow));
+    this.editPanel.classed("stale", activeArrow.isStale);
+    this.staleNote.property("hidden", !activeArrow.isStale);
 
     const explained = activeArrow.baseValue !== null && activeArrow.contributions !== null;
     this.editPanel.classed("explained", explained);

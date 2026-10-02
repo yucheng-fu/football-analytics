@@ -49,7 +49,7 @@ export class PlayStore {
     }
 
     Object.assign(activeArrow, properties);
-    activeArrow.clearPrediction();
+    activeArrow.isStale = activeArrow.prediction !== null;
     return true;
   }
 

@@ -10,6 +10,8 @@ from api.schemas.response import FeatureContribution, InferenceResponse
 from api.services.inference_frame_service import InferenceFrameService
 from feature_engineering.OpenFE.openfe import tree_to_formula
 
+SHAP_SEED = 42
+
 
 class ModelService:
     """Service for model-backed inference operations."""
@@ -82,6 +84,7 @@ class ModelService:
         classes = getattr(self.model, "classes_", None)
         prediction = classes[class_idx] if classes is not None else class_idx
 
+        np.random.seed(SHAP_SEED)
         explanation = self.explainer(self._encode(model_input))
         shap_values = explanation.values[0]
         contributions = [

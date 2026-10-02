@@ -54,3 +54,9 @@ def test_shap_display_names_resolve_openfe_aliases(model_service, payload):
         next(item.value for item in response.contributions if item.feature == "under_pressure"),
         1.0,
     )
+
+
+def test_shap_contributions_are_identical_for_repeated_predictions(model_service, payload):
+    first = model_service.predict(payload)
+    second = model_service.predict(payload)
+    assert [item.contribution for item in first.contributions] == [item.contribution for item in second.contributions]

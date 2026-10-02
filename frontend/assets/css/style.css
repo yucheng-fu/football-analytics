@@ -256,6 +256,20 @@ body {
 .btn-danger:hover { filter: brightness(0.9); }
 .btn-danger-outline:hover { background: #fff5f5; }
 
+.stale-note {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b45309;
+}
+
+#edit-panel.stale #prediction-status,
+#edit-panel.stale #shap-summary,
+#edit-panel.stale #shap-chart {
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+}
+
 /* SHAP explanation */
 #shap-explanation {
   position: relative;
