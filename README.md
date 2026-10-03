@@ -13,7 +13,7 @@ The project currently contains the following analyses:
 | **02 — Pass Difficulty Modelling** | Gradient-boosted models for quantifying pass difficulty | [📓 Notebook](https://github.com/yucheng-fu/football-analytics/blob/main/src/02-analysis/02-analysis.ipynb) | [📝 Blog](https://yucheng-fu.github.io/blog/2026/wc2018-part2/) |
 
 
-You can also check out the interactive pass classifier [here](https://yucheng-fu.github.io/football-analytics/).
+You can also check out the interactive pass classifier [here](https://yucheng-fu.github.io/predict/).
 
 ## 💃 Installation 
 Clone the repository:
@@ -73,6 +73,6 @@ For deployment of frontend, see [README](https://github.com/yucheng-fu/football-
 
 **Data wrangling:** Polars, Pandas, NumPy
 
-**Optimsisation & Feature engineering:** Optuna, OpenFE
+**Optimisation & Feature engineering:** Optuna, OpenFE
 
 **Deployment:** Docker, HuggingFace Spaces
